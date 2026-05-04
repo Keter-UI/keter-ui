@@ -1,0 +1,21 @@
+{
+  "name": "@keter-ui/cli",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "bin": {
+    "keter-ui": "./bin/keter-ui.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --clean",
+    "dev": "tsup src/index.ts --format cjs --watch"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "chalk": "^5.0.0",
+    "fs-extra": "^11.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

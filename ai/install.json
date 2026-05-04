@@ -1,0 +1,27 @@
+{
+  "name": "Keter UI",
+  "version": "1.0.0",
+  "install": "npx keter-ui init",
+  "dependencies": [
+    "@keter-ui/react",
+    "@keter-ui/tokens",
+    "@keter-ui/core",
+    "@keter-ui/rtl"
+  ],
+  "frameworks": ["Next.js", "Vite", "React"],
+  "prompts": {
+    "dashboard": "Create a SaaS dashboard using Keter UI with RTL support",
+    "component": "Add a primary button with Keter UI",
+    "theme": "Configure Keter UI with dark mode and custom primary color"
+  },
+  "examples": [
+    {
+      "title": "Basic Usage",
+      "code": "import { Button } from '@keter-ui/react';\n\nexport const MyComponent = () => (\n  <Button variant=\"primary\">Click me</Button>\n);"
+    },
+    {
+      "title": "RTL Dashboard",
+      "code": "import { DashboardLayout, Sidebar, Topbar } from '@keter-ui/react';\nimport { useRTL } from '@keter-ui/rtl';\n\nexport const Dashboard = () => {\n  const { direction } = useRTL();\n  return (\n    <DashboardLayout \n      sidebar={<Sidebar>...</Sidebar>} \n      topbar={<Topbar>...</Topbar>}\n    >\n      <h1>Content in {direction}</h1>\n    </DashboardLayout>\n  );\n};"
+    }
+  ]
+}
