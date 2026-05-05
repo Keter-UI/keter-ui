@@ -11,6 +11,9 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "lucide-react": "^0.454.0",
     "@keter-ui/react": "workspace:*",
     "@keter-ui/tokens": "workspace:*",
     "@keter-ui/rtl": "workspace:*"
