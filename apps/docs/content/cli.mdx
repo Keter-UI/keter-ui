@@ -1,0 +1,95 @@
+---
+title: CLI
+description: Keter UI CLI — initialize projects and scaffold components in seconds.
+---
+
+# CLI
+
+The Keter UI CLI automates project setup and component scaffolding.
+
+## Install
+
+No install required — use `npx`:
+
+```bash
+npx keter-ui <command>
+```
+
+Or install globally:
+
+```bash
+npm install -g @keter-ui/cli
+```
+
+## Commands
+
+### `keter-ui init`
+
+Initialize Keter UI in an existing project.
+
+```bash
+npx keter-ui init
+```
+
+What it does:
+1. **Detects** your project type (Next.js or Vite)
+2. **Detects** your package manager (pnpm, yarn, npm)
+3. **Installs** `@keter-ui/react`, `@keter-ui/core`, `@keter-ui/tokens`, `@keter-ui/rtl`
+4. **Injects** design tokens into your global CSS
+5. **Creates** `tailwind.config.ts` with Keter UI color scales
+6. **Scaffolds** a base layout file (`KeterLayout.tsx` or `keter-layout.tsx`)
+
+### `keter-ui add <component>`
+
+Add a pre-built component example to your project.
+
+```bash
+npx keter-ui add button
+npx keter-ui add modal
+npx keter-ui add dashboard
+```
+
+Available components:
+
+| Component | Description |
+| --- | --- |
+| `button` | Button usage example with all variants |
+| `input` | Input with label, error, and helper text |
+| `modal` | Modal with open/close and footer |
+| `card` | Card with header, body, footer |
+| `table` | Sortable data table with sample data |
+| `dashboard` | Full dashboard: sidebar, topbar, metrics, chart, activity, table |
+
+Each command creates a `.tsx` file in your `components/` directory (or `src/components/`).
+
+## Example output
+
+```
+  Keter UI — Adding dashboard
+  ─────────────────────────────────────
+
+  ✓ Created components/dashboard.tsx
+
+  Usage:
+    import { MyDashboard } from 'components/dashboard';
+```
+
+## CI / non-interactive
+
+The CLI is fully non-interactive — safe to run in CI pipelines and install scripts.
+
+## Configuration
+
+No configuration file is required. The CLI reads your existing project structure to determine where to write files.
+
+## Using with AI
+
+The CLI is designed to be invoked via AI prompts:
+
+```
+"Initialize a Keter UI project in Next.js with RTL support"
+→ npx keter-ui init
+
+"Add a full dashboard to my project"
+→ npx keter-ui add dashboard
+```

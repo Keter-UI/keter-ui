@@ -1,0 +1,148 @@
+---
+title: Dashboard
+description: Production-ready dashboard layout with sidebar, topbar, metrics, charts, and activity feed.
+---
+
+# Dashboard
+
+Keter UI ships a complete dashboard layout system — not a demo, but a production-ready template.
+
+## Components
+
+| Export | Description |
+| --- | --- |
+| `DashboardLayout` | Root layout: sidebar + topbar + main |
+| `Sidebar` | Collapsible navigation panel |
+| `Topbar` | Sticky header bar |
+| `MetricCard` | KPI card with value, label, and trend |
+| `ActivityFeed` | Chronological activity list |
+| `NavItem` | Sidebar navigation link |
+
+## Quick start
+
+```bash
+npx keter-ui add dashboard
+```
+
+This creates `components/dashboard.tsx` with a fully wired dashboard including metrics, chart placeholder, activity feed, and table.
+
+## Import
+
+```tsx
+import {
+  DashboardLayout,
+  Sidebar,
+  Topbar,
+  MetricCard,
+  ActivityFeed,
+  NavItem,
+} from '@keter-ui/react';
+```
+
+## Basic layout
+
+```tsx
+import { DashboardLayout, Sidebar, Topbar } from '@keter-ui/react';
+import { useToggle } from '@keter-ui/core';
+
+export function AppLayout({ children }: { children: React.ReactNode }) {
+  const [collapsed, toggle] = useToggle(false);
+
+  return (
+    <DashboardLayout
+      sidebar={
+        <Sidebar collapsed={collapsed}>
+          <button onClick={toggle}>Toggle</button>
+          <NavItem label="Dashboard" icon="⊞" active />
+          <NavItem label="Users" icon="👤" />
+        </Sidebar>
+      }
+      topbar={
+        <Topbar>
+          <h1 className="font-semibold text-secondary-800">My App</h1>
+        </Topbar>
+      }
+    >
+      {children}
+    </DashboardLayout>
+  );
+}
+```
+
+## Metrics
+
+```tsx
+<MetricCard
+  label="Total Revenue"
+  value="$48,295"
+  change="+12.5%"
+  positive={true}
+/>
+```
+
+## Activity feed
+
+```tsx
+<ActivityFeed
+  items={[
+    { user: 'Alice', action: 'Created a new project', time: '2m ago' },
+    { user: 'Bob', action: 'Submitted a report', time: '1h ago' },
+  ]}
+/>
+```
+
+## Props
+
+### `DashboardLayout`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `sidebar` | `ReactNode` | Sidebar content |
+| `topbar` | `ReactNode` | Topbar content |
+| `children` | `ReactNode` | Main content area |
+| `className` | `string` | Extra classes for the root element |
+
+### `Sidebar`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `collapsed` | `boolean` | `false` | Collapse to icon-only mode (72px wide) |
+| `children` | `ReactNode` | — | Sidebar content |
+
+### `MetricCard`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `label` | `string` | KPI label |
+| `value` | `string \| number` | Primary value |
+| `change` | `string` | Change text, e.g. `'+12%'` |
+| `positive` | `boolean` | Green if true, red if false |
+| `icon` | `ReactNode` | Optional icon shown in top-right |
+
+### `NavItem`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `label` | `string` | Navigation label |
+| `icon` | `ReactNode` | Optional icon |
+| `active` | `boolean` | Highlight as current page |
+| `collapsed` | `boolean` | Hide label (icon-only mode) |
+| `badge` | `string \| number` | Badge count |
+| `onClick` | `() => void` | Click handler |
+
+## RTL support
+
+The dashboard layout uses `border-e` (inline-end) instead of `border-r` for the sidebar border, and `ms-auto` for right-aligned topbar items. Switching direction via `useRTL` flips the entire layout automatically.
+
+```tsx
+import { useRTL } from '@keter-ui/rtl';
+
+function RTLToggle() {
+  const { isRTL, toggleDirection } = useRTL();
+  return (
+    <button onClick={toggleDirection}>
+      {isRTL ? 'Switch to LTR' : 'Switch to RTL'}
+    </button>
+  );
+}
+```

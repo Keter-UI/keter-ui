@@ -1,0 +1,84 @@
+---
+title: Button
+description: Accessible, variant-rich button component.
+---
+
+# Button
+
+A fully accessible button with multiple variants, sizes, and a loading state.
+
+## Import
+
+```tsx
+import { Button } from '@keter-ui/react';
+```
+
+## Usage
+
+```tsx
+<Button variant="primary">Click me</Button>
+```
+
+## Variants
+
+```tsx
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="danger">Danger</Button>
+```
+
+## Sizes
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+```
+
+## States
+
+```tsx
+<Button disabled>Disabled</Button>
+<Button isLoading>Loading...</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger'` | `'primary'` | Visual style |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
+| `isLoading` | `boolean` | `false` | Shows a spinner and disables the button |
+| `disabled` | `boolean` | `false` | Disables the button |
+| `className` | `string` | — | Additional CSS classes |
+
+All native `<button>` HTML attributes are also supported.
+
+## Accessibility
+
+- Uses a native `<button>` element
+- `disabled` and `isLoading` both set `aria-disabled` implicitly via the HTML `disabled` attribute
+- Focus ring is always visible (`focus:ring-2`)
+- Minimum touch target: 44×44px on `size="lg"`
+
+## RTL behavior
+
+The button itself is direction-agnostic. When placed inside an RTL layout, its content (icon + text) flips automatically via the browser's logical layout.
+
+## Example with icon
+
+```tsx
+import { Button } from '@keter-ui/react';
+
+export function SaveButton() {
+  return (
+    <Button variant="primary" size="md">
+      <svg className="h-4 w-4 me-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      </svg>
+      Save changes
+    </Button>
+  );
+}
+```

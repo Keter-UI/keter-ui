@@ -1,0 +1,77 @@
+---
+title: Input
+description: Form input with label, error state, and helper text.
+---
+
+# Input
+
+A styled text input that supports label, error, and helper text out of the box.
+
+## Import
+
+```tsx
+import { Input } from '@keter-ui/react';
+```
+
+## Usage
+
+```tsx
+<Input
+  label="Email address"
+  type="email"
+  placeholder="you@example.com"
+  helperText="We'll never share your email."
+/>
+```
+
+## Error state
+
+```tsx
+<Input
+  label="Password"
+  type="password"
+  error="Password must be at least 8 characters."
+/>
+```
+
+## Controlled input
+
+```tsx
+import { useState } from 'react';
+import { Input } from '@keter-ui/react';
+
+export function ControlledInput() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="johndoe"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `string` | — | Label text shown above the input |
+| `error` | `string` | — | Error message shown below the input (replaces helperText) |
+| `helperText` | `string` | — | Hint text shown below the input when no error |
+| `className` | `string` | — | Additional CSS classes applied to the `<input>` element |
+
+All native `<input>` HTML attributes are also supported (including `type`, `placeholder`, `value`, `onChange`, `disabled`, etc.).
+
+## Accessibility
+
+- Label and input are linked via an implicit wrapping pattern
+- Error messages are visually distinct (red) and should be connected via `aria-describedby` in custom wrappers
+- Focus ring is always visible
+- Disabled state sets `cursor-not-allowed` and `opacity-50`
+
+## RTL behavior
+
+The input uses logical CSS properties internally. Labels, placeholder text, and helper text all align correctly in both LTR and RTL layouts.

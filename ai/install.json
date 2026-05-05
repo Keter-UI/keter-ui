@@ -1,27 +1,72 @@
 {
   "name": "Keter UI",
   "version": "1.0.0",
-  "install": "npx keter-ui init",
-  "dependencies": [
-    "@keter-ui/react",
-    "@keter-ui/tokens",
-    "@keter-ui/core",
-    "@keter-ui/rtl"
-  ],
+  "description": "Production-grade, AI-native, RTL-first UI system for React.",
+  "install": {
+    "cli": "npx keter-ui init",
+    "npm": "npm install @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl",
+    "pnpm": "pnpm add @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl",
+    "yarn": "yarn add @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl"
+  },
   "frameworks": ["Next.js", "Vite", "React"],
+  "packages": {
+    "@keter-ui/react": "React component library",
+    "@keter-ui/core": "Shared utilities and hooks (cn, useTheme, useToggle)",
+    "@keter-ui/tokens": "Design system tokens (colors, spacing, typography)",
+    "@keter-ui/rtl": "RTL engine (setDirection, useRTL, logicalProps)"
+  },
+  "components": ["Button", "Input", "Modal", "Card", "Table", "DashboardLayout", "Sidebar", "Topbar", "MetricCard", "ActivityFeed", "NavItem"],
+  "hooks": {
+    "@keter-ui/core": ["useTheme", "useToggle"],
+    "@keter-ui/react": ["useThemeContext"],
+    "@keter-ui/rtl": ["useRTL"]
+  },
   "prompts": {
-    "dashboard": "Create a SaaS dashboard using Keter UI with RTL support",
-    "component": "Add a primary button with Keter UI",
-    "theme": "Configure Keter UI with dark mode and custom primary color"
+    "init_nextjs": "Initialize Keter UI in a Next.js App Router project with dark mode and RTL support",
+    "init_vite": "Set up Keter UI in a Vite + React project",
+    "dashboard": "Create a SaaS dashboard using Keter UI with collapsible sidebar, metrics, charts, and RTL support",
+    "rtl_dashboard": "Build a Hebrew/Arabic RTL dashboard using Keter UI with full layout flip",
+    "component": "Add a Keter UI primary button with loading state to my form",
+    "theme": "Configure Keter UI with dark mode, custom primary color, and system theme detection",
+    "table": "Create a sortable data table using @keter-ui/react with TypeScript generics",
+    "modal": "Add a confirmation modal with Keter UI that closes on ESC or backdrop click"
   },
   "examples": [
     {
-      "title": "Basic Usage",
-      "code": "import { Button } from '@keter-ui/react';\n\nexport const MyComponent = () => (\n  <Button variant=\"primary\">Click me</Button>\n);"
+      "title": "Basic Button",
+      "code": "import { Button } from '@keter-ui/react';\n\nexport function MyButton() {\n  return (\n    <div className=\"flex gap-3\">\n      <Button variant=\"primary\">Primary</Button>\n      <Button variant=\"secondary\">Secondary</Button>\n      <Button variant=\"ghost\">Ghost</Button>\n      <Button isLoading>Loading</Button>\n    </div>\n  );\n}"
+    },
+    {
+      "title": "Form with Input",
+      "code": "import { Input, Button } from '@keter-ui/react';\n\nexport function LoginForm() {\n  return (\n    <form className=\"space-y-4 max-w-sm\">\n      <Input label=\"Email\" type=\"email\" placeholder=\"you@example.com\" />\n      <Input label=\"Password\" type=\"password\" error=\"Required\" />\n      <Button variant=\"primary\" className=\"w-full\">Sign in</Button>\n    </form>\n  );\n}"
     },
     {
       "title": "RTL Dashboard",
-      "code": "import { DashboardLayout, Sidebar, Topbar } from '@keter-ui/react';\nimport { useRTL } from '@keter-ui/rtl';\n\nexport const Dashboard = () => {\n  const { direction } = useRTL();\n  return (\n    <DashboardLayout \n      sidebar={<Sidebar>...</Sidebar>} \n      topbar={<Topbar>...</Topbar>}\n    >\n      <h1>Content in {direction}</h1>\n    </DashboardLayout>\n  );\n};"
+      "code": "import { DashboardLayout, Sidebar, Topbar, NavItem } from '@keter-ui/react';\nimport { useRTL } from '@keter-ui/rtl';\nimport { useToggle } from '@keter-ui/core';\n\nexport function Dashboard({ children }) {\n  const { isRTL, toggleDirection } = useRTL();\n  const [collapsed, toggle] = useToggle(false);\n\n  return (\n    <DashboardLayout\n      sidebar={\n        <Sidebar collapsed={collapsed}>\n          <NavItem label=\"Dashboard\" icon=\"⊞\" active />\n          <NavItem label=\"Users\" icon=\"👤\" />\n        </Sidebar>\n      }\n      topbar={\n        <Topbar>\n          <button onClick={toggleDirection}>{isRTL ? 'LTR' : 'RTL'}</button>\n        </Topbar>\n      }\n    >\n      {children}\n    </DashboardLayout>\n  );\n}"
+    },
+    {
+      "title": "Theme Provider",
+      "code": "import { ThemeProvider, useThemeContext } from '@keter-ui/react';\n\nfunction App() {\n  return (\n    <ThemeProvider defaultTheme=\"system\">\n      <Layout />\n    </ThemeProvider>\n  );\n}\n\nfunction ThemeToggle() {\n  const { resolvedTheme, toggleTheme } = useThemeContext();\n  return (\n    <button onClick={toggleTheme}>\n      {resolvedTheme === 'dark' ? '☀️ Light' : '🌙 Dark'}\n    </button>\n  );\n}"
+    },
+    {
+      "title": "Data Table",
+      "code": "import { Table } from '@keter-ui/react';\n\ninterface User { id: number; name: string; email: string; }\n\nconst columns = [\n  { key: 'id' as const, header: 'ID', sortable: true },\n  { key: 'name' as const, header: 'Name', sortable: true },\n  { key: 'email' as const, header: 'Email' },\n];\n\nconst data: User[] = [\n  { id: 1, name: 'Alice', email: 'alice@example.com' },\n  { id: 2, name: 'Bob', email: 'bob@example.com' },\n];\n\nexport function UserTable() {\n  return <Table columns={columns} data={data} />;\n}"
     }
-  ]
+  ],
+  "cli_commands": {
+    "init": "npx keter-ui init — detect project, install deps, inject tokens, configure Tailwind, create layout",
+    "add_button": "npx keter-ui add button",
+    "add_modal": "npx keter-ui add modal",
+    "add_dashboard": "npx keter-ui add dashboard — full production dashboard template"
+  },
+  "design_tokens": {
+    "css_import": "@import '@keter-ui/tokens/css/tokens.css';",
+    "primary_color": "var(--primary-500)",
+    "dark_mode": "Add class 'dark' to <html> element"
+  },
+  "rtl": {
+    "enable": "import { setDirection } from '@keter-ui/rtl'; setDirection('rtl');",
+    "hook": "const { isRTL, toggleDirection } = useRTL();",
+    "tailwind_tip": "Use ms-*, me-*, ps-*, pe-* utilities instead of ml-*, mr-*, pl-*, pr-*"
+  }
 }

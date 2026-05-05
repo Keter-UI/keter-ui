@@ -1,0 +1,86 @@
+---
+title: Modal
+description: Accessible modal dialog with backdrop, ESC support, and composable footer.
+---
+
+# Modal
+
+A fully accessible modal dialog. Supports keyboard dismissal (ESC), backdrop click to close, title, body, and a composable footer.
+
+## Import
+
+```tsx
+import { Modal } from '@keter-ui/react';
+```
+
+## Usage
+
+```tsx
+import { useState } from 'react';
+import { Modal, Button } from '@keter-ui/react';
+
+export function ConfirmDialog() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+
+      <Modal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Confirm deletion"
+        footer={
+          <>
+            <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button variant="danger" onClick={() => setOpen(false)}>Delete</Button>
+          </>
+        }
+      >
+        <p>This action is permanent and cannot be undone.</p>
+      </Modal>
+    </>
+  );
+}
+```
+
+## With `useToggle`
+
+```tsx
+import { Modal, Button } from '@keter-ui/react';
+import { useToggle } from '@keter-ui/core';
+
+export function QuickModal() {
+  const [isOpen, toggle] = useToggle(false);
+
+  return (
+    <>
+      <Button onClick={toggle}>Open modal</Button>
+      <Modal isOpen={isOpen} onClose={toggle} title="Settings">
+        <p>Modal content here.</p>
+      </Modal>
+    </>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `isOpen` | `boolean` | ✓ | Controls visibility |
+| `onClose` | `() => void` | ✓ | Called when backdrop clicked or ESC pressed |
+| `title` | `string` | — | Modal heading |
+| `children` | `ReactNode` | ✓ | Modal body content |
+| `footer` | `ReactNode` | — | Footer content (typically action buttons) |
+
+## Accessibility
+
+- ESC key triggers `onClose`
+- Backdrop click triggers `onClose`
+- Uses `z-50` to stack above all content
+- Backdrop has `backdrop-blur-sm` for visual depth
+
+## RTL behavior
+
+The modal close button and title follow the document direction automatically. In RTL, the close button appears at the inline-start of the header.

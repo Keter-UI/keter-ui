@@ -1,0 +1,76 @@
+---
+title: Table
+description: Sortable data table with clean layout and hover states.
+---
+
+# Table
+
+A generic, type-safe data table with sortable columns and clean layout.
+
+## Import
+
+```tsx
+import { Table } from '@keter-ui/react';
+```
+
+## Usage
+
+```tsx
+import { Table } from '@keter-ui/react';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+const columns = [
+  { key: 'id' as const, header: 'ID', sortable: true },
+  { key: 'name' as const, header: 'Name', sortable: true },
+  { key: 'email' as const, header: 'Email' },
+  { key: 'role' as const, header: 'Role', sortable: true },
+];
+
+const data: User[] = [
+  { id: 1, name: 'Alice', email: 'alice@example.com', role: 'Admin' },
+  { id: 2, name: 'Bob', email: 'bob@example.com', role: 'User' },
+];
+
+export function UserTable() {
+  return <Table columns={columns} data={data} />;
+}
+```
+
+## Sorting
+
+Click any column header marked `sortable: true` to sort ascending. Click again to sort descending. Sort indicators (`↑` / `↓`) appear in the column header.
+
+Sorting is managed internally by the component. To control it externally, implement your own sort logic and pass sorted data.
+
+## Props
+
+### `TableProps<T>`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `columns` | `Column<T>[]` | Column definitions |
+| `data` | `T[]` | Row data |
+| `className` | `string` | Additional CSS classes |
+
+### `Column<T>`
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `key` | `keyof T` | ✓ | Key to access value from row object |
+| `header` | `string` | ✓ | Column header label |
+| `sortable` | `boolean` | — | Enable client-side sorting for this column |
+
+## Accessibility
+
+- Uses semantic `<table>`, `<thead>`, `<tbody>`, `<th>`, `<td>` elements
+- Sortable columns respond to click events on `<th>` with `cursor-pointer`
+
+## RTL behavior
+
+The table respects `text-left` in LTR and `text-right` in RTL via the document direction. Header and cell alignment follow the layout direction automatically.

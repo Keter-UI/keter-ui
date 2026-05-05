@@ -1,0 +1,81 @@
+---
+title: Card
+description: Container card with optional header, body, and footer sections.
+---
+
+# Card
+
+A versatile container component with composable header, body, and footer subcomponents.
+
+## Import
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter } from '@keter-ui/react';
+```
+
+## Usage
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter, Button } from '@keter-ui/react';
+
+export function ProfileCard() {
+  return (
+    <Card className="max-w-sm">
+      <CardHeader title="Alice Johnson" subtitle="Senior Engineer" />
+      <CardBody>
+        <p className="text-secondary-600 text-sm">
+          Building distributed systems and open-source tools.
+        </p>
+      </CardBody>
+      <CardFooter>
+        <Button size="sm" variant="primary">View profile</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+```
+
+## Card only
+
+```tsx
+<Card className="p-6">
+  <p>Any content can go directly inside Card.</p>
+</Card>
+```
+
+## Props
+
+### `Card`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `ReactNode` | Card content |
+| `className` | `string` | Additional CSS classes |
+
+### `CardHeader`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `title` | `string` | Primary heading |
+| `subtitle` | `string` | Secondary text |
+
+### `CardBody`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `ReactNode` | Body content |
+
+### `CardFooter`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `ReactNode` | Footer content (typically action buttons) |
+
+## Accessibility
+
+- No ARIA roles added by default — wrap in appropriate landmark if needed
+- Hover shadow animation via `transition-all hover:shadow-md` signals interactivity
+
+## RTL behavior
+
+Card layout is direction-agnostic. All padding and borders use standard CSS, which renders correctly in both LTR and RTL.

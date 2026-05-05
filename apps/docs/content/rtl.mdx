@@ -1,0 +1,109 @@
+---
+title: RTL Support
+description: First-class right-to-left layout support across all Keter UI components.
+---
+
+# RTL Support
+
+RTL is a first-class feature in Keter UI — not an afterthought.
+
+All components use logical CSS properties (`margin-inline-start`, `padding-inline-end`, `border-e`, etc.) which flip automatically based on the document direction.
+
+## Setup
+
+```bash
+npm install @keter-ui/rtl
+```
+
+## Basic usage
+
+```tsx
+import { useRTL } from '@keter-ui/rtl';
+
+export function DirectionToggle() {
+  const { isRTL, toggleDirection, direction } = useRTL();
+
+  return (
+    <button onClick={toggleDirection}>
+      Current direction: {direction} — Switch to {isRTL ? 'LTR' : 'RTL'}
+    </button>
+  );
+}
+```
+
+## Set direction programmatically
+
+```tsx
+import { setDirection } from '@keter-ui/rtl';
+
+// Force RTL (e.g., for Hebrew/Arabic content)
+setDirection('rtl');
+
+// Force LTR
+setDirection('ltr');
+```
+
+## `useRTL` hook
+
+```tsx
+import { useRTL } from '@keter-ui/rtl';
+
+const { direction, isRTL, toggleDirection, setDirection } = useRTL();
+```
+
+| Value | Type | Description |
+| --- | --- | --- |
+| `direction` | `'ltr' \| 'rtl'` | Current layout direction |
+| `isRTL` | `boolean` | True when direction is RTL |
+| `toggleDirection` | `() => void` | Toggle between LTR and RTL |
+| `setDirection` | `(dir) => void` | Set direction explicitly |
+
+## Logical CSS utilities
+
+The `@keter-ui/rtl` package exports logical property helpers for inline styles:
+
+```tsx
+import { logicalProps } from '@keter-ui/rtl';
+
+<div style={logicalProps.paddingInlineStart('1rem')}>...</div>
+<div style={logicalProps.marginInlineEnd('0.5rem')}>...</div>
+```
+
+Available helpers:
+
+| Helper | CSS property |
+| --- | --- |
+| `marginInlineStart(v)` | `margin-inline-start` |
+| `marginInlineEnd(v)` | `margin-inline-end` |
+| `paddingInlineStart(v)` | `padding-inline-start` |
+| `paddingInlineEnd(v)` | `padding-inline-end` |
+
+## Tailwind integration
+
+Keter UI components use Tailwind logical utilities (`ms-*`, `me-*`, `ps-*`, `pe-*`, `border-s`, `border-e`) which automatically flip in RTL mode.
+
+> **Tip:** Use `ms-auto` instead of `ml-auto` and `pe-4` instead of `pr-4` in your own components to maintain RTL compatibility.
+
+## Language-level RTL
+
+For Hebrew or Arabic content, set both the direction and the language:
+
+```tsx
+import { setDirection } from '@keter-ui/rtl';
+
+function switchToHebrew() {
+  setDirection('rtl');
+  document.documentElement.lang = 'he';
+}
+```
+
+## How it works
+
+`setDirection` sets two attributes on `document.documentElement`:
+
+```
+document.documentElement.dir = 'rtl'
+document.documentElement.setAttribute('data-direction', 'rtl')
+```
+
+This propagates through the entire document, affecting all CSS logical properties and Tailwind utilities simultaneously.

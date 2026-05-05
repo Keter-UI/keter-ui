@@ -1,0 +1,57 @@
+---
+title: Keter UI
+description: Production-grade, AI-native, RTL-first UI system for modern developers.
+---
+
+# Keter UI
+
+A production-grade, AI-native, RTL-first UI platform for React applications.
+
+## What is Keter UI?
+
+Keter UI is not just a component library — it is a complete UI system:
+
+- **Component library** — Button, Input, Modal, Card, Table, and more
+- **Design tokens** — colors, spacing, typography, radius
+- **RTL engine** — first-class right-to-left layout support
+- **CLI tool** — scaffold and configure your project in seconds
+- **Dashboard templates** — production-ready layouts with real data
+
+## Quick start
+
+```bash
+npx keter-ui init
+```
+
+This detects your project type (Next.js or Vite), installs dependencies, injects tokens, and creates a base layout.
+
+## Install manually
+
+```bash
+npm install @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl
+```
+
+## Basic usage
+
+```tsx
+import { Button, Input, Modal, Card } from '@keter-ui/react';
+
+export default function App() {
+  return (
+    <Card>
+      <Input label="Email" type="email" />
+      <Button variant="primary">Submit</Button>
+    </Card>
+  );
+}
+```
+
+## Packages
+
+| Package | Description |
+| --- | --- |
+| `@keter-ui/react` | React component library |
+| `@keter-ui/core` | Shared utilities and hooks |
+| `@keter-ui/tokens` | Design system tokens |
+| `@keter-ui/rtl` | RTL engine |
+| `@keter-ui/cli` | CLI tool |

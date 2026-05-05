@@ -1,0 +1,96 @@
+---
+title: Installation
+description: Install Keter UI packages in your project.
+---
+
+# Installation
+
+## Framework guides
+
+### Next.js (App Router)
+
+```bash
+npm install @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl
+```
+
+Add tokens to `app/globals.css`:
+
+```css
+@import '@keter-ui/tokens/css/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Add `ThemeProvider` to `app/layout.tsx`:
+
+```tsx
+import { ThemeProvider } from '@keter-ui/react';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+### Vite
+
+```bash
+npm install @keter-ui/react @keter-ui/core @keter-ui/tokens @keter-ui/rtl
+```
+
+Add tokens to `src/index.css`:
+
+```css
+@import '@keter-ui/tokens/css/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Wrap in `main.tsx`:
+
+```tsx
+import { ThemeProvider } from '@keter-ui/react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </StrictMode>
+);
+```
+
+## Package list
+
+| Package | Version | Description |
+| --- | --- | --- |
+| `@keter-ui/react` | 1.0.0 | React components |
+| `@keter-ui/core` | 1.0.0 | Utilities and hooks |
+| `@keter-ui/tokens` | 1.0.0 | Design tokens |
+| `@keter-ui/rtl` | 1.0.0 | RTL engine |
+
+## Peer dependencies
+
+```json
+{
+  "react": ">=18",
+  "react-dom": ">=18"
+}
+```
+
+## TypeScript
+
+All packages include `.d.ts` declaration files. No extra `@types` packages required.
+
+Minimum TypeScript version: **5.0**
