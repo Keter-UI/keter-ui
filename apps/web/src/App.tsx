@@ -7,10 +7,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/sections/Hero';
-import { Playground } from './components/sections/Playground';
-import { ComponentsGrid } from './components/sections/ComponentsGrid';
+import { CLIDemo } from './components/sections/CLIDemo';
 import { Dashboards } from './components/sections/Dashboards';
+import { ComponentsGrid } from './components/sections/ComponentsGrid';
+import { Features } from './components/sections/Features';
 import { AISection } from './components/sections/AISection';
+import { Comparison } from './components/sections/Comparison';
+import { CodeExample } from './components/sections/CodeExample';
+import { Playground } from './components/sections/Playground';
+import { FinalCTA } from './components/sections/FinalCTA';
 import { Footer } from './components/layout/Footer';
 import { DashboardLayout } from './components/sections/DashboardLayout';
 import { DocsPage } from './pages/DocsPage';
@@ -23,10 +28,15 @@ function LandingPage() {
       <Navbar />
       <main>
         <Hero />
-        <Playground />
-        <ComponentsGrid />
+        <CLIDemo />
         <Dashboards />
+        <ComponentsGrid />
+        <Features />
         <AISection />
+        <Comparison />
+        <CodeExample />
+        <Playground />
+        <FinalCTA />
       </main>
       <Footer />
     </div>
