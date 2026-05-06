@@ -1,0 +1,188 @@
+/* Keter UI Design Tokens — generated from @keter-ui/tokens */
+/* Import via: import '@keter-ui/tokens/css' */
+
+@layer base {
+  :root {
+    /* ── Color: Neutral ──────────────────────────────────── */
+    --color-neutral-50:  #fafafa;
+    --color-neutral-100: #f4f4f5;
+    --color-neutral-200: #e4e4e7;
+    --color-neutral-300: #d4d4d8;
+    --color-neutral-400: #a1a1aa;
+    --color-neutral-500: #71717a;
+    --color-neutral-600: #52525b;
+    --color-neutral-700: #3f3f46;
+    --color-neutral-800: #27272a;
+    --color-neutral-900: #18181b;
+    --color-neutral-950: #09090b;
+
+    /* ── Color: Brand (Blue) ─────────────────────────────── */
+    --color-brand-50:  #eff6ff;
+    --color-brand-100: #dbeafe;
+    --color-brand-200: #bfdbfe;
+    --color-brand-300: #93c5fd;
+    --color-brand-400: #60a5fa;
+    --color-brand-500: #3b82f6;
+    --color-brand-600: #2563eb;
+    --color-brand-700: #1d4ed8;
+    --color-brand-800: #1e40af;
+    --color-brand-900: #1e3a8a;
+    --color-brand-950: #172554;
+
+    /* ── Color: Success ──────────────────────────────────── */
+    --color-success-50:  #f0fdf4;
+    --color-success-500: #22c55e;
+    --color-success-700: #15803d;
+    --color-success-900: #14532d;
+
+    /* ── Color: Warning ──────────────────────────────────── */
+    --color-warning-50:  #fffbeb;
+    --color-warning-500: #f59e0b;
+    --color-warning-700: #b45309;
+    --color-warning-900: #78350f;
+
+    /* ── Color: Danger ───────────────────────────────────── */
+    --color-danger-50:  #fff1f2;
+    --color-danger-500: #f43f5e;
+    --color-danger-700: #be123c;
+    --color-danger-900: #881337;
+
+    /* ── Spacing (4px grid) ──────────────────────────────── */
+    --spacing-px:  1px;
+    --spacing-0:   0px;
+    --spacing-1:   0.25rem;
+    --spacing-2:   0.5rem;
+    --spacing-3:   0.75rem;
+    --spacing-4:   1rem;
+    --spacing-5:   1.25rem;
+    --spacing-6:   1.5rem;
+    --spacing-8:   2rem;
+    --spacing-10:  2.5rem;
+    --spacing-12:  3rem;
+    --spacing-16:  4rem;
+    --spacing-20:  5rem;
+    --spacing-24:  6rem;
+    --spacing-32:  8rem;
+    --spacing-40:  10rem;
+    --spacing-48:  12rem;
+    --spacing-64:  16rem;
+
+    /* ── Radius ──────────────────────────────────────────── */
+    --radius-none: 0px;
+    --radius-xs:   0.125rem;
+    --radius-sm:   0.25rem;
+    --radius-md:   0.375rem;
+    --radius-lg:   0.5rem;
+    --radius-xl:   0.75rem;
+    --radius-2xl:  1rem;
+    --radius-3xl:  1.5rem;
+    --radius-full: 9999px;
+
+    /* ── Shadows ─────────────────────────────────────────── */
+    --shadow-none: none;
+    --shadow-xs:   0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm:   0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl:  0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* ── Typography ──────────────────────────────────────── */
+    --font-sans:  Inter, system-ui, -apple-system, sans-serif;
+    --font-mono:  'JetBrains Mono', 'Fira Code', Menlo, monospace;
+
+    /* ── Semantic: Light Theme ───────────────────────────── */
+    --bg-base:      #fafafa;
+    --bg-subtle:    #f4f4f5;
+    --bg-muted:     #e4e4e7;
+    --bg-emphasis:  #18181b;
+
+    --fg-base:         #18181b;
+    --fg-muted:        #71717a;
+    --fg-subtle:       #a1a1aa;
+    --fg-on-emphasis:  #fafafa;
+
+    --border-base:   #e4e4e7;
+    --border-subtle: #f4f4f5;
+    --border-strong: #d4d4d8;
+
+    --brand-bg:        #2563eb;
+    --brand-bg-hover:  #1d4ed8;
+    --brand-fg:        #ffffff;
+    --brand-muted:     #dbeafe;
+    --brand-text:      #1d4ed8;
+
+    --success-bg:      #f0fdf4;
+    --success-fg:      #15803d;
+    --success-border:  #bbf7d0;
+
+    --warning-bg:      #fffbeb;
+    --warning-fg:      #b45309;
+    --warning-border:  #fde68a;
+
+    --danger-bg:       #fff1f2;
+    --danger-fg:       #be123c;
+    --danger-border:   #fecdd3;
+
+    --surface-base:    #ffffff;
+    --surface-raised:  #fafafa;
+    --surface-overlay: #ffffff;
+
+    --input-bg:           #ffffff;
+    --input-border:       #e4e4e7;
+    --input-border-focus: #18181b;
+    --input-placeholder:  #a1a1aa;
+  }
+
+  .dark {
+    /* ── Semantic: Dark Theme ────────────────────────────── */
+    --bg-base:     #09090b;
+    --bg-subtle:   #18181b;
+    --bg-muted:    #27272a;
+    --bg-emphasis: #fafafa;
+
+    --fg-base:        #fafafa;
+    --fg-muted:       #a1a1aa;
+    --fg-subtle:      #52525b;
+    --fg-on-emphasis: #09090b;
+
+    --border-base:   #27272a;
+    --border-subtle: #18181b;
+    --border-strong: #3f3f46;
+
+    --brand-bg:       #3b82f6;
+    --brand-bg-hover: #60a5fa;
+    --brand-fg:       #ffffff;
+    --brand-muted:    #172554;
+    --brand-text:     #60a5fa;
+
+    --success-bg:      #052e16;
+    --success-fg:      #4ade80;
+    --success-border:  #14532d;
+
+    --warning-bg:      #451a03;
+    --warning-fg:      #fbbf24;
+    --warning-border:  #78350f;
+
+    --danger-bg:      #4c0519;
+    --danger-fg:      #fb7185;
+    --danger-border:  #881337;
+
+    --surface-base:    #09090b;
+    --surface-raised:  #18181b;
+    --surface-overlay: #18181b;
+
+    --input-bg:           #09090b;
+    --input-border:       #27272a;
+    --input-border-focus: #fafafa;
+    --input-placeholder:  #52525b;
+
+    /* ── Shadows: Dark ───────────────────────────────────── */
+    --shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+  }
+}

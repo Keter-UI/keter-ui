@@ -1,0 +1,35 @@
+{
+  "name": "@keter-ui/cli",
+  "version": "0.1.0",
+  "description": "CLI for Keter UI — scaffold components, setup tokens, initialize projects",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "keter-ui": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.14.0",
+    "@types/prompts": "^2.4.9",
+    "rimraf": "^5.0.10",
+    "tsup": "^8.3.5",
+    "typescript": "~5.8.2"
+  }
+}

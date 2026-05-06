@@ -1,0 +1,50 @@
+{
+  "name": "@keter-ui/react",
+  "version": "0.1.0",
+  "description": "React component library for Keter UI — 25+ production-ready components",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@keter-ui/core": "workspace:*",
+    "@keter-ui/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=11.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-hook-form": ">=7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "framer-motion": { "optional": true },
+    "react-hook-form": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "framer-motion": "^12.38.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-hook-form": "^7.54.2",
+    "rimraf": "^5.0.10",
+    "tsup": "^8.3.5",
+    "typescript": "~5.8.2"
+  }
+}

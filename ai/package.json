@@ -1,0 +1,8 @@
+{
+  "name": "@keter-ui/ai",
+  "version": "0.1.0",
+  "description": "AI integration manifests for Keter UI",
+  "license": "MIT",
+  "private": false,
+  "files": ["install.json"]
+}

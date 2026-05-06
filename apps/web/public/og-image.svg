@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#09090b"/>
+
+  <!-- Subtle gradient glow top-left -->
+  <radialGradient id="g1" cx="20%" cy="20%" r="50%">
+    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+
+  <!-- Subtle gradient glow bottom-right -->
+  <radialGradient id="g2" cx="80%" cy="80%" r="50%">
+    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- Border -->
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="#27272a" stroke-width="2"/>
+
+  <!-- Icon (white version, centered, scaled from 1500×1500 viewBox to ~120px) -->
+  <g transform="translate(540, 155) scale(0.08)">
+    <defs>
+      <clipPath id="og-c1"><path d="M 575 846 L 925 846 L 925 873.703125 L 575 873.703125 Z" clip-rule="nonzero"/></clipPath>
+      <clipPath id="og-c2"><path d="M 487 512.203125 L 1013 512.203125 L 1013 836 L 487 836 Z" clip-rule="nonzero"/></clipPath>
+    </defs>
+    <g clip-path="url(#og-c1)">
+      <path fill="#ffffff" d="M 575.058594 846.414062 L 924.210938 846.414062 L 924.210938 873.289062 L 575.058594 873.289062 Z" fill-opacity="1" fill-rule="nonzero"/>
+    </g>
+    <g clip-path="url(#og-c2)">
+      <path fill="#ffffff" d="M 844.929688 664.457031 L 749.738281 512.125 L 656.175781 664.457031 L 487.710938 575.03125 L 575.058594 835.691406 L 924.097656 835.691406 C 924.097656 835.691406 1011.09375 576.832031 1012.460938 574.160156 C 1009.867188 576.867188 844.929688 664.457031 844.929688 664.457031 Z M 750.09375 599.730469 L 804.015625 687.722656 L 749.851562 716.367188 L 695.125 687.722656 Z M 595.796875 757.792969 L 566.074219 669.753906 L 628.753906 702.710938 Z M 634.277344 788.433594 L 672.066406 726.894531 L 750.125 769.484375 L 826.960938 726.894531 L 866.003906 788.433594 Z M 900.914062 758.9375 L 867.953125 703.855469 L 930.636719 670.898438 Z" fill-opacity="1" fill-rule="nonzero"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="600" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-2">Keter UI</text>
+
+  <!-- Tagline -->
+  <text x="600" y="418" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#a1a1aa" text-anchor="middle">AI-Native · RTL-First · Production-Grade</text>
+
+  <!-- Divider -->
+  <line x1="420" y1="460" x2="780" y2="460" stroke="#3f3f46" stroke-width="1"/>
+
+  <!-- Sub-description -->
+  <text x="600" y="505" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" fill="#71717a" text-anchor="middle">React components · Design tokens · CLI · Dashboard templates</text>
+</svg>

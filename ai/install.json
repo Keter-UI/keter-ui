@@ -1,0 +1,106 @@
+{
+  "$schema": "https://keter-ui.dev/schema/ai-manifest.json",
+  "name": "Keter UI",
+  "version": "0.1.0",
+  "description": "AI-first, RTL-first production UI system for React",
+  "url": "https://keter-ui.dev",
+  "repository": "https://github.com/keter-ui/keter-ui",
+
+  "packages": {
+    "@keter-ui/react":  "Main component library — Button, Input, Modal, Table, Form, and 20+ more",
+    "@keter-ui/tokens": "Design tokens — colors, typography, spacing, radius, shadows as JS + CSS vars",
+    "@keter-ui/core":   "Core utilities — cn(), variants() system, shared TypeScript types",
+    "@keter-ui/rtl":    "RTL utilities — direction hooks, logical property helpers",
+    "@keter-ui/cli":    "CLI tool — init, add, list commands"
+  },
+
+  "install": {
+    "commands": {
+      "npm":  "npm install @keter-ui/react @keter-ui/tokens",
+      "pnpm": "pnpm add @keter-ui/react @keter-ui/tokens",
+      "yarn": "yarn add @keter-ui/react @keter-ui/tokens",
+      "bun":  "bun add @keter-ui/react @keter-ui/tokens"
+    },
+    "cli": "npx keter-ui init",
+    "requirements": {
+      "react":    ">=18.0.0",
+      "tailwind": ">=4.0.0",
+      "node":     ">=18.0.0"
+    }
+  },
+
+  "setup": {
+    "global_css": "@import '@keter-ui/tokens/css';",
+    "dark_mode_class": "dark",
+    "direction_attribute": "dir",
+    "rtl_locales": ["ar", "he", "fa", "ur", "ps", "ug", "yi"]
+  },
+
+  "prompts": {
+    "init_nextjs":   "Install Keter UI in my Next.js project with dark mode and RTL support",
+    "init_vite":     "Set up Keter UI in a Vite + React project",
+    "dashboard":     "Create a SaaS dashboard with sidebar, topbar, charts, and data table",
+    "rtl_app":       "Build an RTL-first application for Hebrew/Arabic users",
+    "form":          "Create a contact form with validation using Keter UI",
+    "auth":          "Build a sign-in / sign-up page with Keter UI components"
+  },
+
+  "flows": [
+    {
+      "name": "New Project Setup",
+      "steps": [
+        "Run: npx keter-ui init",
+        "CLI detects framework (Next.js / Vite / Remix / Astro)",
+        "Installs @keter-ui/react, @keter-ui/tokens",
+        "Creates src/styles/globals.css with token imports",
+        "Creates keter.config.ts",
+        "Imports globals.css in root layout",
+        "Done — start using components"
+      ]
+    },
+    {
+      "name": "Add Component",
+      "steps": [
+        "Run: npx keter-ui add button",
+        "CLI creates src/components/ui/button.tsx with example",
+        "Import in your page: import { Button } from '@keter-ui/react'"
+      ]
+    },
+    {
+      "name": "Enable RTL",
+      "steps": [
+        "Install: pnpm add @keter-ui/rtl",
+        "Import hook: import { useLocaleDirection } from '@keter-ui/rtl'",
+        "Use in root component: useLocaleDirection(locale)",
+        "All Keter UI components respond automatically to dir attribute",
+        "Use Tailwind logical classes: ps-4 pe-4 ms-2 (instead of pl/pr/ml)"
+      ]
+    },
+    {
+      "name": "Dark Mode",
+      "steps": [
+        "Toggle .dark class on <html> element",
+        "All Keter UI components automatically adapt",
+        "Persist preference to localStorage",
+        "Detect system preference with window.matchMedia"
+      ]
+    }
+  ],
+
+  "components": [
+    "Button", "Badge", "Card", "Input", "Textarea", "Label",
+    "Checkbox", "Switch", "Select", "Tabs", "Alert", "Modal",
+    "Drawer", "Dropdown", "Tooltip", "Table", "DataTable",
+    "Avatar", "AvatarGroup", "Progress", "Separator", "Skeleton",
+    "Accordion", "Form", "FormField", "FormLabel", "FormControl",
+    "FormDescription", "FormMessage"
+  ],
+
+  "examples": {
+    "button": "import { Button } from '@keter-ui/react';\n<Button variant=\"primary\" size=\"lg\">Get Started</Button>",
+    "form": "import { Form, FormField, FormLabel, FormControl, FormMessage, Input, useForm } from '@keter-ui/react';\n\nconst form = useForm();\n<Form form={form} onSubmit={console.log}>\n  <FormField name=\"email\">\n    <FormLabel required>Email</FormLabel>\n    <FormControl><Input {...form.register('email')} /></FormControl>\n    <FormMessage />\n  </FormField>\n</Form>",
+    "table": "import { DataTable } from '@keter-ui/react';\n\n<DataTable\n  columns={[{ key: 'name', header: 'Name', sortable: true }]}\n  data={[{ name: 'Alice' }, { name: 'Bob' }]}\n  selectable\n/>",
+    "modal": "import { Modal, Button } from '@keter-ui/react';\nimport { useState } from 'react';\n\nconst [open, setOpen] = useState(false);\n<Button onClick={() => setOpen(true)}>Open</Button>\n<Modal isOpen={open} onClose={() => setOpen(false)} title=\"Confirm\">\n  <p>Are you sure?</p>\n</Modal>",
+    "rtl": "import { useLocaleDirection } from '@keter-ui/rtl';\n\nfunction App({ locale }) {\n  useLocaleDirection(locale); // auto-applies dir to <html>\n  return <div>Content adapts to RTL automatically</div>;\n}"
+  }
+}
