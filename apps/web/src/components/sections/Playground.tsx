@@ -93,7 +93,7 @@ export const Playground = () => {
                    </div>
                    <div className="bg-zinc-950 rounded-xl p-5 font-mono text-[11px] text-zinc-300 border border-zinc-800 leading-relaxed overflow-x-auto">
 <pre className="text-blue-400">
-{`import { Button, Input } from '@keter-ui/${framework.toLowerCase()}';
+{`import { Button, Input } from '@/components/ui';
 
 export default function Demo() {
   return (

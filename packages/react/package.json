@@ -23,8 +23,8 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@keter-ui/core": "workspace:*",
-    "@keter-ui/tokens": "workspace:*"
+    "@keter-ui/core": "^1.0.1",
+    "@keter-ui/tokens": "^0.1.0"
   },
   "peerDependencies": {
     "framer-motion": ">=11.0.0",

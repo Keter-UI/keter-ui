@@ -6,7 +6,7 @@
 
 ## ✨ What is Keter UI?
 
-Keter UI is a modern, composable UI system designed for developers who want:
+Keter UI is a modern, registry-based UI system designed for developers who want:
 
 - ⚡ Ship SaaS products fast
 - 🎨 Build with a design system at Apple/Stripe level
@@ -14,36 +14,23 @@ Keter UI is a modern, composable UI system designed for developers who want:
 - 🧠 DX-first architecture (developer experience first)
 - 🌍 Multi-language & multi-tenant ready by default
 
-This is not just a component library.
-This is a product foundation system.
-
----
-
-## 🧠 Philosophy
-
-- Opinionated, but extensible
-- Minimal boilerplate, maximum velocity
-- Design system > random components
-- Built for real SaaS, not demos
+This is a copy-and-paste UI system, allowing you full ownership of your component code.
 
 ---
 
 ## 🏗️ Architecture
 
-- Monorepo structure (pnpm workspaces)
-- Core design system (@keter-ui/core)
-- Components layer (@keter-ui/components)
-- Hooks & utilities (@keter-ui/hooks)
-- CLI generator (keter create component)
-- Form system (react-hook-form integrated)
+- Registry-based distribution (shadcn/ui style)
+- File-copy components (no runtime library coupling)
+- CLI-driven installation and management
 - CVA-based variant system
+- Tailwind CSS integration
 
 ---
 
 ## ⚡ Features
 
 ### 🎨 Design System
-- Apple/Stripe-level visual hierarchy
 - Token-based theming
 - Dark mode first
 - Accessible by default
@@ -52,34 +39,31 @@ This is a product foundation system.
 - Buttons, Inputs, Modals, Tables, Forms
 - Fully typed (TypeScript-first)
 - Variant system with CVA
-- Headless + styled modes
-
-### 🧠 DX
-- CLI generator
-- Auto scaffolding
-- Strict TypeScript
-- Zero-config usage
-
-### 🌍 SaaS Ready
-- i18n support
-- Auth-ready patterns
-- Dashboard layouts
-- Role-based UI structure
 
 ---
 
 ## 📦 Installation
 
+Initialize the project and base utilities:
+
 ```bash
-pnpm add @keter-ui/core @keter-ui/components
+npx keter-ui init
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Usage
+
+Add components to your project:
+
+```bash
+npx keter-ui add button
+```
+
+Then import them from your local project:
 
 ```tsx
-import { Button } from "@keter-ui/components";
+import { Button } from "@/components/ui/button";
 
 export default function App() {
   return (
@@ -97,20 +81,10 @@ export default function App() {
 ## 🧪 CLI
 
 ```bash
-keter create component button
-keter create form login
+npx keter-ui init
+npx keter-ui add [component]
+npx keter-ui list
 ```
-
----
-
-## 🧭 Roadmap
-
-- SaaS dashboard templates
-- Admin panel system
-- AI-powered UI generator
-- Figma sync
-- Plugin ecosystem
-- Marketplace for components
 
 ---
 
@@ -118,7 +92,6 @@ keter create form login
 
 - Follow design system rules
 - Keep DX clean
-- Avoid over-engineering
 
 ---
 

@@ -1,0 +1,15 @@
+{
+  "utilities": {
+    "cn": {
+      "files": ["lib/utils.ts"],
+      "dependencies": ["clsx", "tailwind-merge"]
+    }
+  },
+  "components": {
+    "button": {
+      "files": ["components/ui/button.tsx"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["cn"]
+    }
+  }
+}
