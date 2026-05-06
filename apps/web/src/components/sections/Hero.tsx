@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/KeterUI';
 import { ArrowRight, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
       {/* Background Gradients */}
@@ -29,19 +32,18 @@ export const Hero = () => {
           </div>
           
           <h1 className="mx-auto max-w-4xl text-5xl font-black tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-7xl lg:text-8xl">
-            Stop wiring UI. <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Start shipping.</span>
+            {t('hero.title').split(' ').slice(0, 2).join(' ')} <br />
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{t('hero.title').split(' ').slice(2).join(' ')}</span>
           </h1>
           
           <p className="mx-auto mt-8 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl leading-relaxed">
-            Beautiful like <span className="text-zinc-900 dark:text-zinc-200 font-medium">shadcn</span>. Powerful like <span className="text-zinc-900 dark:text-zinc-200 font-medium">Ant Design</span>. 
-            The first AI-native UI system designed for high-performance dashboards and RTL-first applications.
+            {t('hero.subtitle')}
           </p>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <Link to="/docs">
               <Button size="lg" className="h-12 px-8 text-base font-semibold gap-2 shadow-lg shadow-blue-500/20">
-                Get Started <ArrowRight size={20} />
+                {t('hero.ctaPrimary')} <ArrowRight size={20} />
               </Button>
             </Link>
             <a href="https://github.com/keter-ui/keter-ui" target="_blank" rel="noopener noreferrer">

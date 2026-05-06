@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "ממשק משתמש מבוסס AI למפתחים מודרניים",
+    "subtitle": "מרובה ספריות. תמיכה מלאה ב-RTL. דשבורדים מוכנים לייצור עבור code, low-code, vibe-code וNo-Code.",
+    "ctaPrimary": "מתחילים",
+    "ctaSecondary": "דמו חי"
+  },
+  "playground": {
+    "title": "סביבת עבודה חיה",
+    "react": "React",
+    "vue": "Vue",
+    "svelte": "Svelte",
+    "toggleLtr": "LTR",
+    "toggleRtl": "RTL"
+  },
+  "ai": {
+    "title": "בנה עם AI",
+    "prompt": "צור דשבורד SaaS באמצעות Keter UI עם תמיכת RTL",
+    "install": "npx keter-ui init"
+  }
+}

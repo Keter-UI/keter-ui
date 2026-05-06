@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "AI-native UI for modern developers",
+    "subtitle": "Multi-framework. RTL-first. Production-ready dashboards for code, low-code, vibe-code and No-Code.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "Live Demo"
+  },
+  "playground": {
+    "title": "Live Playground",
+    "react": "React",
+    "vue": "Vue",
+    "svelte": "Svelte",
+    "toggleLtr": "LTR",
+    "toggleRtl": "RTL"
+  },
+  "ai": {
+    "title": "Build with AI",
+    "prompt": "Create a SaaS dashboard using Keter UI with RTL support",
+    "install": "npx keter-ui init"
+  }
+}

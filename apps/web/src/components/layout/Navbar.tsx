@@ -1,12 +1,16 @@
-import { Moon, Sun, Github, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Moon, Sun, Github } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../../context/AppContext';
 import { Button } from '../ui/KeterUI';
-import type { Language } from '../../locales';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
-  const { lang, setLang, isDark, setIsDark } = useAppContext();
+  const { i18n } = useTranslation();
+  const { isDark, setIsDark } = useAppContext();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
@@ -39,12 +43,12 @@ export const Navbar = () => {
         <div className="flex items-center gap-3">
           {/* Language switcher */}
           <div className="hidden md:flex items-center gap-1 border-e border-zinc-200 dark:border-zinc-800 pe-3 me-1">
-            {(['en', 'pt', 'es', 'he'] as Language[]).map((l) => (
+            {(['en', 'pt', 'es', 'he']).map((l) => (
               <button
                 key={l}
-                onClick={() => setLang(l)}
+                onClick={() => changeLanguage(l)}
                 className={`px-2 py-1 text-[10px] uppercase font-black rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors ${
-                  lang === l ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20' : 'text-zinc-400'
+                  i18n.language === l ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20' : 'text-zinc-400'
                 }`}
               >
                 {l}

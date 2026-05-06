@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "UI nativa para IA para desenvolvedores modernos",
+    "subtitle": "Multi-framework. RTL-first. Dashboards prontos para produção para code, low-code, vibe-code e No-Code.",
+    "ctaPrimary": "Começar",
+    "ctaSecondary": "Demo ao Vivo"
+  },
+  "playground": {
+    "title": "Playground Interativo",
+    "react": "React",
+    "vue": "Vue",
+    "svelte": "Svelte",
+    "toggleLtr": "LTR",
+    "toggleRtl": "RTL"
+  },
+  "ai": {
+    "title": "Construa com IA",
+    "prompt": "Crie um dashboard SaaS usando Keter UI com suporte RTL",
+    "install": "npx keter-ui init"
+  }
+}

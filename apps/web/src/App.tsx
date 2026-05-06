@@ -4,6 +4,8 @@
  */
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppProvider } from './context/AppContext';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/sections/Hero';
@@ -22,7 +24,13 @@ import { DocsPage } from './pages/DocsPage';
 import { LegalPage } from './pages/LegalPage';
 import { ComponentsPage } from './pages/ComponentsPage';
 
-function LandingPage() {
+function AppContent() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === 'he' ? 'rtl' : 'ltr';
+  }, [i18n.language]);
+
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 font-sans selection:bg-blue-500/30">
       <Navbar />
@@ -48,7 +56,7 @@ export default function App() {
     <AppProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<AppContent />} />
           <Route path="/dashboard" element={<DashboardLayout />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/components" element={<ComponentsPage />} />
