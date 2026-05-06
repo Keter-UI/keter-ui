@@ -91,15 +91,14 @@ const SECTIONS: Record<string, React.ReactNode> = {
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">Installation</h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          Keter UI works with Next.js, Vite, Remix, and Astro. Get started with the CLI or manually.
+          Keter UI is a registry-based component system. Initialize your project to get started.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         {[
-          { icon: <Zap size={20} />, title: 'CLI (Recommended)', desc: 'Auto-detects your framework and configures everything.' },
-          { icon: <Package size={20} />, title: 'Manual', desc: 'Install packages directly and configure manually.' },
-          { icon: <Globe size={20} />, title: 'CDN', desc: 'Use the pre-built bundle for quick prototyping.' },
+          { icon: <Zap size={20} />, title: 'CLI (Recommended)', desc: 'Auto-detects your framework and configures base utilities.' },
+          { icon: <Package size={20} />, title: 'File Copy', desc: 'Add components one by one. You own the code.' },
         ].map((card) => (
           <div key={card.title} className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 space-y-2 hover:border-blue-300 dark:hover:border-blue-800 transition-colors">
             <div className="text-blue-600 dark:text-blue-400">{card.icon}</div>
@@ -110,46 +109,32 @@ const SECTIONS: Record<string, React.ReactNode> = {
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Quick Start with CLI</h2>
+        <h2 className="text-2xl font-bold">Quick Start</h2>
         <p className="text-zinc-600 dark:text-zinc-400">
-          Run this in your project root. The CLI will detect your framework and set up everything automatically.
+          Run this in your project root. The CLI will detect your framework and set up the base utility system.
         </p>
         <CodeBlock code="npx keter-ui init" lang="bash" />
         <div className="rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/60 p-4">
           <p className="text-sm text-blue-700 dark:text-blue-300">
-            The CLI will install packages, set up CSS tokens, configure Tailwind, and create a{' '}
-            <code className="font-mono bg-blue-100 dark:bg-blue-950 px-1 rounded">keter.config.ts</code> file.
+            The CLI installs required external dependencies (Tailwind, clsx, etc.) and creates base utilities like{' '}
+            <code className="font-mono bg-blue-100 dark:bg-blue-950 px-1 rounded">src/lib/utils.ts</code>.
           </p>
         </div>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Manual Installation</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">Install the packages you need:</p>
-        <CodeBlock
-          code={`# Core library + design tokens
-pnpm add @keter-ui/react @keter-ui/tokens
-
-# RTL utilities (optional)
-pnpm add @keter-ui/rtl`}
-          lang="bash"
-        />
-
-        <h3 className="text-lg font-semibold mt-6">Configure CSS</h3>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">Import the tokens in your global CSS:</p>
-        <CodeBlock
-          code={`@import 'tailwindcss';
-@import '@keter-ui/tokens/css';`}
-          lang="css"
-        />
+        <h2 className="text-2xl font-bold">Add Components</h2>
+        <p className="text-zinc-600 dark:text-zinc-400">Use the CLI to add components to your project:</p>
+        <CodeBlock code="npx keter-ui add button" lang="bash" />
 
         <h3 className="text-lg font-semibold mt-6">Use components</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">Import directly from your project files:</p>
         <CodeBlock
-          code={`import { Button, Input, Modal } from '@keter-ui/react';
+          code={`import { Button } from '@/components/ui/button';
 
 export default function App() {
   return (
-    <Button variant="primary" size="lg">
+    <Button variant="primary">
       Hello, Keter UI
     </Button>
   );
@@ -176,7 +161,7 @@ export default function App() {
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">CLI Reference</h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          The <code className="font-mono text-blue-600 dark:text-blue-400">keter-ui</code> CLI helps you initialize projects and add components.
+          The <code className="font-mono text-blue-600 dark:text-blue-400">keter-ui</code> CLI is the main tool for managing your UI system.
         </p>
       </div>
 
@@ -184,7 +169,7 @@ export default function App() {
         {[
           {
             cmd: 'npx keter-ui init',
-            desc: 'Initialize Keter UI in your project. Detects framework (Next.js, Vite, Remix, Astro), installs dependencies, sets up Tailwind and design tokens.',
+            desc: 'Initialize Keter UI in your project. Detects framework (Next.js, Vite, etc.), installs external dependencies, and sets up base utilities.',
             flags: [
               { flag: '--yes, -y', desc: 'Skip confirmation prompts' },
               { flag: '--cwd <path>', desc: 'Set working directory' },
@@ -192,7 +177,7 @@ export default function App() {
           },
           {
             cmd: 'npx keter-ui add [component]',
-            desc: 'Add a component example to your project. Generates a .tsx file in src/components/ui/.',
+            desc: 'Fetch a component from the registry and copy it into your project.',
             flags: [
               { flag: '--dir <path>', desc: 'Output directory (default: src/components/ui)' },
               { flag: '--cwd <path>', desc: 'Set working directory' },
@@ -200,7 +185,7 @@ export default function App() {
           },
           {
             cmd: 'npx keter-ui list',
-            desc: 'List all available components.',
+            desc: 'List all available components in the registry.',
             flags: [],
           },
         ].map((item) => (
@@ -244,7 +229,7 @@ export default function App() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-bold">Dark Mode</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">Add the <code className="font-mono text-blue-600 dark:text-blue-400">dark</code> class to <code className="font-mono text-blue-600 dark:text-blue-400">{'<html>'}</code> to enable dark mode. Keter UI uses the <code className="font-mono text-blue-600 dark:text-blue-400">class</code> strategy.</p>
+        <p className="text-zinc-600 dark:text-zinc-400">Add the <code className="font-mono text-blue-600 dark:text-blue-400">dark</code> class to <code className="font-mono text-blue-600 dark:text-blue-400">{'<html>'}</code> to enable dark mode.</p>
         <CodeBlock
           code={`// Toggle dark mode
 document.documentElement.classList.toggle('dark');
@@ -288,14 +273,9 @@ useEffect(() => {
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Import</h2>
-        <CodeBlock code={`import { neutral, brand, spacing, radius } from '@keter-ui/tokens';`} lang="tsx" />
-      </section>
-
-      <section className="space-y-4">
         <h2 className="text-2xl font-bold">CSS Variables</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">Import the pre-built CSS variables:</p>
-        <CodeBlock code={`@import '@keter-ui/tokens/css';`} lang="css" />
+        <p className="text-zinc-600 dark:text-zinc-400">These variables are automatically set up during <code className="font-mono">init</code>.</p>
+        <CodeBlock code={`@import './styles/globals.css';`} lang="css" />
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
@@ -324,7 +304,7 @@ useEffect(() => {
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">RTL Overview</h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          RTL (Right-to-Left) is a first-class feature in Keter UI — not an afterthought. All components use CSS logical properties natively.
+          RTL (Right-to-Left) is a first-class feature in Keter UI. All components use CSS logical properties natively.
         </p>
       </div>
 
@@ -341,14 +321,7 @@ useEffect(() => {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Setup</h2>
-        <CodeBlock
-          code={`import { applyDocumentDirection, isRTLLocale } from '@keter-ui/rtl';
-
-// Apply direction based on locale
-applyDocumentDirection(isRTLLocale('he') ? 'rtl' : 'ltr', 'he');`}
-          lang="tsx"
-        />
+        <h2 className="text-2xl font-bold">Tailwind Usage</h2>
         <CodeBlock
           code={`// Tailwind: use logical properties
 <div className="ps-4 pe-4 ms-2">  {/* ✓ RTL-safe */}
@@ -363,7 +336,7 @@ applyDocumentDirection(isRTLLocale('he') ? 'rtl' : 'ltr', 'he');`}
     <div className="space-y-10">
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">RTL Hooks</h1>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">React hooks for direction detection and management.</p>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400">Utilities for direction detection, copied into your project during init.</p>
       </div>
 
       <section className="space-y-4">
@@ -371,31 +344,11 @@ applyDocumentDirection(isRTLLocale('he') ? 'rtl' : 'ltr', 'he');`}
           {
             name: 'useDirection()',
             desc: 'Returns the current document direction, reactive to changes.',
-            code: `import { useDirection } from '@keter-ui/rtl';
+            code: `import { useDirection } from '@/hooks/useDirection';
 
 function MyComponent() {
   const dir = useDirection(); // 'ltr' | 'rtl'
   return <div>Direction: {dir}</div>;
-}`,
-          },
-          {
-            name: 'useIsRTL()',
-            desc: 'Returns true when the document direction is RTL.',
-            code: `import { useIsRTL } from '@keter-ui/rtl';
-
-function NavIcon() {
-  const isRTL = useIsRTL();
-  return <ChevronRight className={isRTL ? 'rotate-180' : ''} />;
-}`,
-          },
-          {
-            name: 'useLocaleDirection(locale)',
-            desc: 'Manages direction from a locale string and applies it to the document.',
-            code: `import { useLocaleDirection } from '@keter-ui/rtl';
-
-function App({ locale }: { locale: string }) {
-  const { dir, isRTL } = useLocaleDirection(locale);
-  return <div dir={dir}>...</div>;
 }`,
           },
         ].map((h) => (
@@ -414,59 +367,29 @@ function App({ locale }: { locale: string }) {
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">Variant System</h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          A type-safe CVA-style variant system for building consistent component APIs.
+          A type-safe variant system using <code className="font-mono">class-variance-authority</code>.
         </p>
       </div>
 
       <section className="space-y-4">
         <h2 className="text-2xl font-bold">Usage</h2>
         <CodeBlock
-          code={`import { variants } from '@keter-ui/core';
+          code={`import { cva } from 'class-variance-authority';
 
-const buttonVariants = variants({
-  base: 'inline-flex items-center rounded-lg font-medium transition-all',
-  variants: {
-    variant: {
-      primary:   'bg-zinc-900 text-zinc-50 hover:bg-zinc-800',
-      secondary: 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200',
-      outline:   'border border-zinc-200 hover:bg-zinc-50',
+const buttonVariants = cva(
+  'inline-flex items-center rounded-lg font-medium transition-all',
+  {
+    variants: {
+      variant: {
+        primary:   'bg-zinc-900 text-zinc-50 hover:bg-zinc-800',
+        outline:   'border border-zinc-200 hover:bg-zinc-50',
+      },
     },
-    size: {
-      sm: 'h-8 px-3 text-xs',
-      md: 'h-10 px-4 text-sm',
-      lg: 'h-12 px-6 text-base',
+    defaultVariants: {
+      variant: 'primary',
     },
-  },
-  defaultVariants: {
-    variant: 'primary',
-    size: 'md',
-  },
-});
-
-// Usage
-<button className={buttonVariants({ variant: 'outline', size: 'sm' })}>
-  Click me
-</button>`}
-          lang="tsx"
-        />
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Compound Variants</h2>
-        <CodeBlock
-          code={`const buttonVariants = variants({
-  variants: {
-    variant: { outline: '...', primary: '...' },
-    size:    { sm: '...', lg: '...' },
-  },
-  compoundVariants: [
-    {
-      variant: 'outline',
-      size: 'lg',
-      class: 'border-2', // applied only when both match
-    },
-  ],
-});`}
+  }
+);`}
           lang="tsx"
         />
       </section>
@@ -478,16 +401,15 @@ const buttonVariants = variants({
       <div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">cn() Utility</h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          Merges Tailwind classes intelligently, resolving conflicts with <code className="font-mono text-blue-600 dark:text-blue-400">tailwind-merge</code>.
+          Intelligent Tailwind class merging. Found in <code className="font-mono">src/lib/utils.ts</code>.
         </p>
       </div>
       <CodeBlock
-        code={`import { cn } from '@keter-ui/core';
+        code={`import { cn } from '@/lib/utils';
 
 // Merge classes, resolving Tailwind conflicts
 cn('px-4 py-2', 'px-6')       // → 'py-2 px-6'
-cn('text-red-500', condition && 'text-green-500') // → conditional
-cn('rounded-lg', { 'border border-zinc-200': hasBorder })`}
+cn('text-red-500', condition && 'text-green-500')`}
         lang="tsx"
       />
     </div>

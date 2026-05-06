@@ -5,8 +5,8 @@ import ora from 'ora';
 import prompts from 'prompts';
 import { logger } from '../utils/logger.js';
 import { detectFramework, detectPackageManager, frameworkLabel, isTypeScriptProject } from '../utils/detect-framework.js';
+import { fetchRegistry, copyRegistryFile } from '../utils/registry.js';
 
-const DEPS = ['@keter-ui/react', '@keter-ui/tokens', '@keter-ui/core', '@keter-ui/rtl'];
 const DEV_DEPS = ['tailwindcss', '@tailwindcss/vite', 'autoprefixer'];
 
 export async function runInit(opts: { cwd?: string; yes?: boolean }) {
@@ -35,12 +35,26 @@ export async function runInit(opts: { cwd?: string; yes?: boolean }) {
     return;
   }
 
-  // ── 1. Install dependencies ────────────────────────────────────────────────
+  // ── 1. Fetch Registry ─────────────────────────────────────────────────────
+  
+  const registrySpinner = ora('Fetching registry…').start();
+  let registry;
+  try {
+    registry = await fetchRegistry();
+    registrySpinner.succeed('Registry metadata fetched.');
+  } catch (err) {
+    registrySpinner.fail('Failed to fetch registry.');
+    logger.error(String(err));
+    return;
+  }
+
+  // ── 2. Install external dependencies ──────────────────────────────────────
 
   const installSpinner = ora('Installing dependencies…').start();
   try {
+    const deps = ['clsx', 'tailwind-merge', 'class-variance-authority', 'react-hook-form'];
     const installArgs = pm === 'npm' ? ['install'] : pm === 'pnpm' ? ['add'] : ['add'];
-    await execa(pm, [...installArgs, ...DEPS], { cwd });
+    await execa(pm, [...installArgs, ...deps], { cwd });
     installSpinner.succeed('Dependencies installed.');
   } catch (err) {
     installSpinner.fail('Failed to install dependencies.');
@@ -48,20 +62,33 @@ export async function runInit(opts: { cwd?: string; yes?: boolean }) {
     return;
   }
 
-  // ── 2. Write tokens CSS ─────────────────────────────────────────────────────
+  // ── 3. Setup Base Utilities (cn, etc.) ───────────────────────────────────
+
+  const utilSpinner = ora('Setting up base utilities…').start();
+  try {
+    const cnUtil = registry.utilities.cn;
+    if (cnUtil) {
+      for (const file of cnUtil.files) {
+        const targetPath = path.join(cwd, 'src', file);
+        await copyRegistryFile(file, targetPath);
+      }
+    }
+    utilSpinner.succeed('Base utilities configured.');
+  } catch (err) {
+    utilSpinner.fail('Failed to setup utilities.');
+    logger.error(String(err));
+  }
+
+  // ── 4. Write tokens CSS ─────────────────────────────────────────────────────
 
   const cssDir = path.join(cwd, 'src', 'styles');
   await fs.ensureDir(cssDir);
-
-  const tokensImportPath = framework === 'next'
-    ? "@import '@keter-ui/tokens/css';"
-    : "@import '@keter-ui/tokens/css';";
 
   const globalCssPath = path.join(cssDir, 'globals.css');
   if (!fs.existsSync(globalCssPath)) {
     await fs.writeFile(
       globalCssPath,
-      `@import 'tailwindcss';\n${tokensImportPath}\n\n@layer base {\n  * {\n    box-sizing: border-box;\n  }\n  body {\n    font-family: var(--font-sans);\n    background-color: var(--bg-base);\n    color: var(--fg-base);\n  }\n}\n`
+      `@import 'tailwindcss';\n\n@layer base {\n  * {\n    box-sizing: border-box;\n  }\n  body {\n    font-family: var(--font-sans);\n    background-color: var(--bg-base);\n    color: var(--fg-base);\n  }\n}\n`
     );
     logger.success(`Created src/styles/globals.css`);
   }

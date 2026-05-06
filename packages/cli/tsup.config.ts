@@ -3,21 +3,13 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: ['src/index.ts'],
   format: ['cjs'],
-  dts: false,
-  splitting: false,
-  sourcemap: false,
+  dts: true,
   clean: true,
-  treeshake: true,
+  outDir: 'dist',
+  minify: true,
   banner: {
     js: '#!/usr/bin/env node',
   },
-  noExternal: [
-    'chalk',
-    'commander',
-    'execa',
-    'fs-extra',
-    'ora',
-    'picocolors',
-    'prompts',
-  ],
+  // Ensure we don't bundle external dependencies that should be handled by the user's PM
+  external: ['commander', 'execa', 'fs-extra', 'ora', 'picocolors', 'prompts', 'chalk'],
 });

@@ -16,7 +16,7 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@keter-ui/core": "workspace:*"
+    "@keter-ui/core": "^1.0.1"
   },
   "scripts": {
     "build": "tsup",

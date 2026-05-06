@@ -16,7 +16,7 @@ export const CodeExample = () => {
                <div className="p-6 font-mono text-[13px] leading-relaxed overflow-x-auto">
                   <div className="flex gap-4">
                      <span className="text-zinc-600 select-none w-4">1</span>
-                     <span className="text-purple-400">import</span> {'{'} <span className="text-zinc-100">Button, Dashboard</span> {'}'} <span className="text-purple-400">from</span> <span className="text-green-400">'@keter-ui/react'</span>;
+                     <span className="text-purple-400">import</span> {'{'} <span className="text-zinc-100">Button, Dashboard</span> {'}'} <span className="text-purple-400">from</span> <span className="text-green-400">'@/components/ui'</span>;
                   </div>
                   <div className="flex gap-4">
                      <span className="text-zinc-600 select-none w-4">2</span>

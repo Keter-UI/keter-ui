@@ -45,7 +45,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Button } from '@keter-ui/react';
+    code: `import { Button } from '@/components/ui';
 
 <Button variant="primary">Primary</Button>
 <Button variant="outline">Outline</Button>
@@ -68,7 +68,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Input } from '@keter-ui/react';
+    code: `import { Input } from '@/components/ui';
 
 <Input label="Email" placeholder="you@example.com" helperText="Helper text" />
 <Input label="Name" error="This field is required." />`,
@@ -87,7 +87,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Textarea } from '@keter-ui/react';
+    code: `import { Textarea } from '@/components/ui';
 
 <Textarea label="Message" placeholder="Write here..." rows={4} />`,
   },
@@ -106,7 +106,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Checkbox } from '@keter-ui/react';
+    code: `import { Checkbox } from '@/components/ui';
 
 <Checkbox
   label="Accept terms"
@@ -129,7 +129,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Switch } from '@keter-ui/react';
+    code: `import { Switch } from '@/components/ui';
 
 <Switch
   checked={isDark}
@@ -159,7 +159,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Select } from '@keter-ui/react';
+    code: `import { Select } from '@/components/ui';
 
 <Select
   label="Framework"
@@ -185,7 +185,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Badge } from '@keter-ui/react';
+    code: `import { Badge } from '@/components/ui';
 
 <Badge variant="success">Active</Badge>
 <Badge variant="destructive">Failed</Badge>`,
@@ -207,7 +207,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Alert } from '@keter-ui/react';
+    code: `import { Alert } from '@/components/ui';
 
 <Alert variant="success" title="Done!">
   Changes saved successfully.
@@ -229,7 +229,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Avatar } from '@keter-ui/react';
+    code: `import { Avatar } from '@/components/ui';
 
 <Avatar src="/photo.jpg" fallback="DY" size="md" />`,
   },
@@ -248,7 +248,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Progress } from '@keter-ui/react';
+    code: `import { Progress } from '@/components/ui';
 
 <Progress value={72} max={100} label="Upload" />`,
   },
@@ -277,7 +277,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Skeleton } from '@keter-ui/react';
+    code: `import { Skeleton } from '@/components/ui';
 
 <Skeleton className="h-4 w-3/4" />
 <Skeleton className="h-32 w-full rounded-xl" />`,
@@ -303,7 +303,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Separator } from '@keter-ui/react';
+    code: `import { Separator } from '@/components/ui';
 
 <Separator />
 <Separator orientation="vertical" />`,
@@ -334,7 +334,7 @@ const components = [
         </Tabs>
       </ComponentPreview>
     ),
-    code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@keter-ui/react';
+    code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui';
 
 <Tabs defaultValue="tab1">
   <TabsList>
@@ -362,7 +362,7 @@ const components = [
         />
       </ComponentPreview>
     ),
-    code: `import { Accordion } from '@keter-ui/react';
+    code: `import { Accordion } from '@/components/ui';
 
 <Accordion items={[
   { value: 'q1', trigger: 'Question?', content: 'Answer.' },
@@ -392,7 +392,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Tooltip } from '@keter-ui/react';
+    code: `import { Tooltip } from '@/components/ui';
 
 <Tooltip content="More info" side="top">
   <Button>Hover me</Button>
@@ -416,7 +416,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Modal } from '@keter-ui/react';
+    code: `import { Modal } from '@/components/ui';
 
 <Modal isOpen={open} onClose={() => setOpen(false)} title="Confirm">
   <p>Are you sure?</p>
@@ -443,7 +443,7 @@ const components = [
         </Card>
       </ComponentPreview>
     ),
-    code: `import { Card } from '@keter-ui/react';
+    code: `import { Card } from '@/components/ui';
 
 <Card>
   <p>Card content</p>
@@ -464,7 +464,7 @@ const components = [
         </div>
       </ComponentPreview>
     ),
-    code: `import { Label } from '@keter-ui/react';
+    code: `import { Label } from '@/components/ui';
 
 <Label htmlFor="email" required>Email</Label>`,
   },
@@ -624,13 +624,13 @@ export const ComponentsPage = () => {
                 <div className="space-y-3">
                   <h3 className="text-sm font-black uppercase tracking-widest">Installation</h3>
                   <div className="p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 font-mono text-[11px] text-zinc-600 dark:text-zinc-400">
-                    npm install @keter-ui/react
+                    npx keter-ui init
                   </div>
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-sm font-black uppercase tracking-widest">Import</h3>
                   <div className="p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 font-mono text-[11px] text-blue-500">
-                    {`import { ${selected.name} } from '@keter-ui/react';`}
+                    {`import { ${selected.name} } from '@/components/ui';`}
                   </div>
                 </div>
               </section>

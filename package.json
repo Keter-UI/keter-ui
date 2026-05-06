@@ -8,8 +8,9 @@
     "url": "https://github.com/keter-ui/keter-ui"
   },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "build": "npm run build:cli",
+    "build:cli": "cd packages/cli && npm run build",
+    "dev": "node packages/cli/dist/index.js",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rimraf node_modules",
